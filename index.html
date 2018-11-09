@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<title>Document</title>
+	<style> html, body, input, button {font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 1.1em; color: slategray;}  div{width: 80%; margin: auto; text-align: center;}  input{width: 50%;} .tit{font-size: 1.3em;}</style>
+	<script>
+		$(document).ready(function() {
+			var txtlink = $('#txtlink');
+			var cmdgo = $('#cmdgo');
+			txtlink.val('').focus();
+			txtlink.on('focus', function() {$(this).select();});
+			txtlink.on('mouseup', function(e) {e.preventDefault();return false;});
+			cmdgo.on('click', function(e) {
+				e.preventDefault();
+				if(txtlink.val().length > 1){
+					var _v1 = txtlink.val();
+					var pos = _v1.indexOf('?');
+					if(pos == -1){
+					    alert('invalid media picture link');
+					}else{
+					    txtlink.val('');
+					    var _v2 = _v1.substr(0,pos-1);
+					    var _v3 = _v2 + "/media/?size=l";
+						window.open(_v3, '_blank');
+					}
+				}else{
+				   txtlink.focus();
+				}
+				return false;
+			});
+			var url = new URL(window.location.href);
+			var about = url.searchParams.get("about");
+			if(about == "r"){alert('desarrollador: Rolan GN');}
+			if(about == "d"){alert('Dandi, sudo hazme un sandwich');}
+		});
+	</script>
+</head>
+<body >
+<div>
+	<br><div class="animated infinite pulse tit">Instarro!</div><br>
+	Media Picture Link: <input type="text" id="txtlink" title="MPL"> <button id="cmdgo">Go!</button>
+</div>
+</body>
+</html>
