@@ -6,14 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-	<title>Document</title>
+	<title>Insta Down</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
 	<style> html, body, input, button {font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 1.1em; color: slategray;}  div{width: 80%; margin: auto; text-align: center;}  input{width: 50%;} .tit{font-size: 1.3em;}</style>
 	<script>
 		$(document).ready(function() {
 			var txtlink = $('#txtlink');
 			var cmdgo = $('#cmdgo');
 			txtlink.val('').focus();
-			txtlink.on('focus', function() {$(this).select();});
+			txtlink.on('focus', function() {/*$(this).select();*/
+				setTimeout(async () => {
+					const text = await navigator.clipboard.readText();
+					$(this).empty().val(text).select();
+				}, 10);
+
+			});
 			txtlink.on('mouseup', function(e) {e.preventDefault();return false;});
 			cmdgo.on('click', function(e) {
 				e.preventDefault();
@@ -42,8 +53,8 @@
 </head>
 <body >
 <div>
-	<br><div class="animated infinite pulse tit">Instarro!</div><br>
-	Media Picture Link: <input type="text" id="txtlink" title="MPL"> <button id="cmdgo">Go!</button>
+	<br><div class="animated infinite pulse tit">Insta Down</div><br>
+	Instagram photo link: <input type="text" id="txtlink" title="MPL"> <button id="cmdgo">Ok</button>
 </div>
 </body>
 </html>
